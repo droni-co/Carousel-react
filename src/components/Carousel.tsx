@@ -1,5 +1,4 @@
 import React from "react";
-import Video from "./Video";
 
 const carouselBody = React.createRef<HTMLDivElement>();
 const carouselInner = React.createRef<HTMLDivElement>();
@@ -30,32 +29,12 @@ const move = (direction: "next" | "prev") => {
 }
 
 
-function Carousel() {
+function Carousel(props: Readonly<{ children: React.ReactNode }>) {
   return (
     <div className="relative border container mx-auto p-2 my-16 rounded-md">
       <div ref={carouselBody} className="overflow-auto no-scrollbar relative">
         <div ref={carouselInner} className="text-nowrap">
-          <div className="inline-block w-full md:w-1/3 p-2">
-            <Video />
-          </div>
-          <div className="inline-block w-full md:w-1/3 p-2">
-            <Video />
-          </div>
-          <div className="inline-block w-full md:w-1/3 p-2">
-            <Video />
-          </div>
-          <div className="inline-block w-full md:w-1/3 p-2">
-            <Video />
-          </div>
-          <div className="inline-block w-full md:w-1/3 p-2">
-            <Video />
-          </div>
-          <div className="inline-block w-full md:w-1/3 p-2">
-            <Video />
-          </div>
-          <div className="inline-block w-full md:w-1/3 p-2">
-            <Video />
-          </div>
+          { props.children }
         </div>
       </div>
       <button
