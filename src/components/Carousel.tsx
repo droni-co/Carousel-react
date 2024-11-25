@@ -5,9 +5,10 @@ const carouselBody = React.createRef<HTMLDivElement>();
 const carouselInner = React.createRef<HTMLDivElement>();
 
 
-const move = (direction: "next" | "prev", scrollSlide:number) => {
+const move = (direction: "next" | "prev") => {
+  const scrollSlide = 3
   const clientWidth = Number(carouselBody.current?.clientWidth)
-  const scrollSize = scrollSlide === 2 ? (clientWidth/3)*2 : clientWidth/scrollSlide
+  const scrollSize = clientWidth < 769 ? (clientWidth/1) : clientWidth/scrollSlide
   carouselBody.current?.scrollTo({
     left: direction === "next" ? carouselBody.current.scrollLeft + scrollSize : carouselBody.current.scrollLeft - scrollSize,
     behavior: "smooth"
@@ -29,47 +30,42 @@ const move = (direction: "next" | "prev", scrollSlide:number) => {
 }
 
 
-function Carousel({scrollSlide, itemWidth}: Readonly<{scrollSlide: number, itemWidth: string}>) {
+function Carousel() {
   return (
     <div className="relative border container mx-auto p-2 my-16 rounded-md">
       <div ref={carouselBody} className="overflow-auto no-scrollbar relative">
         <div ref={carouselInner} className="text-nowrap">
-          <div className={`inline-block w-${itemWidth} p-2`}>
+          <div className="inline-block w-full md:w-1/3 p-2">
             <Video />
           </div>
-          <div className={`inline-block w-${itemWidth} p-2`}>
+          <div className="inline-block w-full md:w-1/3 p-2">
             <Video />
           </div>
-          <div className={`inline-block w-${itemWidth} p-2`}>
+          <div className="inline-block w-full md:w-1/3 p-2">
             <Video />
           </div>
-          <div className={`inline-block w-${itemWidth} p-2`}>
+          <div className="inline-block w-full md:w-1/3 p-2">
             <Video />
           </div>
-          <div className={`inline-block w-${itemWidth} p-2`}>
+          <div className="inline-block w-full md:w-1/3 p-2">
             <Video />
           </div>
-          <div className={`inline-block w-${itemWidth} p-2`}>
+          <div className="inline-block w-full md:w-1/3 p-2">
             <Video />
           </div>
-          <div className={`inline-block w-${itemWidth} p-2`}>
-            <Video />
-          </div>
-          <div className={`inline-block w-${itemWidth} p-2`}>
-            <Video />
-          </div>
-          <div className={`inline-block w-${itemWidth} p-2`}>
-            <Video />
-          </div>
-          <div className={`inline-block w-${itemWidth} p-2`}>
+          <div className="inline-block w-full md:w-1/3 p-2">
             <Video />
           </div>
         </div>
       </div>
-      <button className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-r-md" onClick={() => move("prev", scrollSlide)}>
+      <button
+        className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-r-md"
+        onClick={() => move("prev")}>
         Prev 
       </button>
-      <button className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-l-md" onClick={() => move("next", scrollSlide)}>
+      <button
+        className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-l-md"
+        onClick={() => move("next")}>
         Next
       </button>
     </div>

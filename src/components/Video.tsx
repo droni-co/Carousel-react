@@ -1,6 +1,6 @@
 function Video() {
   return (
-    <div className="">
+    <div>
       <img src="/photo.jpg" alt="Placeholder" className="inset-0 w-full h-full object-cover" />
     </div>
   )
